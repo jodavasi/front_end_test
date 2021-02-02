@@ -92,7 +92,10 @@ function mainSearch() {
 }
 
 //Do the email search from no result mockup
-function resultsSearch() {
+function noResultsSearch() {
+  loadingShow();
+  document.getElementById("mockupResult").style.display = "none";
+  document.getElementById("mockupNoResult").style.display = "none";
   let mail = document.getElementById("objectNoResult").value;
   let url =
     "https://ltv-data-api.herokuapp.com/api/v1/records.json?email=" + mail;
@@ -134,10 +137,14 @@ function resultsSearch() {
 
 //Do the email search from result mockup
 function resultsSearch() {
+  loadingShow();
+  document.getElementById("mockupResult").style.display = "none";
+  document.getElementById("mockupNoResult").style.display = "none";
   let mail = document.getElementById("objectResult").value;
   let url =
     "https://ltv-data-api.herokuapp.com/api/v1/records.json?email=" + mail;
-  fetch(url)
+    
+    fetch(url)
     .then((response) => response.json())
     .then((data) => {
       if (Object.entries(data).length === 0) {
